@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Request Form</title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	
+<script>
+/*
+This JS function checks to see which category is chosen, then chooses a textbox
+based on the selection of the category.  It then hides the other textbox.
+*/
+
+function check() {
+	var dropdown = document.getElementById("reasonSelect");
+	var current_value = dropdown.options[dropdown.selectedIndex].value;
+		
+		if (current_value == "Blank") {
+			document.getElementById("purchaseBlock").style.display = "none";
+			document.getElementById("replaceBlock").style.display = "none";
+			
+		}
+		else if (current_value == "Purchasing") {
+			document.getElementById("purchaseBlock").style.display = "block";
+			document.getElementById("replaceBlock").style.display = "none";
+		}
+		else if (current_value == "Replacement") {
+			document.getElementById("replaceBlock").style.display = "block";
+			document.getElementById("purchaseBlock").style.display = "none";
+		}
+}
+</script>
+</head>
+
+<body onload="check();">
+
+<form method="post" action="pcreqform.php">
+<img src="/images/logo.jpg">
+<hr>
+<table>
+<tr> 
+	<td>First Name:</td>
+	<td><input type="text" name="empFirstName" required></td>
+</tr>
+
+<tr> 
+	<td>Last Name:</td>
+	<td><input type="text" name="empLastName" required></td>
+</tr>
+
+<tr>
+	<td>Requester Email:</td>
+	<td><input type="text" name="requesterEmail" required></td>
+</tr>
+
+<tr>
+	<td>Director First Name:</td>
+	<td><input type="text" name="superFirstName" required></td>
+</tr>
+
+<tr>
+	<td>Director Last Name:</td>
+	<td><input type="text" name="superLastName" required></td>
+</tr>
+
+<tr>
+	<td>Phone:</td>
+	<td><input type="text" name="phone" required></td>
+</tr>
+
+<tr>
+	<td>Department/Floor:</td>
+	<td><input type="text" name="dept" required></td>
+</tr>
+
+<tr>
+	<td>Location (Pod/Office):</td>
+	<td><input type="text" name="location" required></td>
+</tr>
+
+<tr>
+	<td>Computer Name:</td>
+	<td><input type="text" name="compName"></td>
+</tr>
+</table>
+<br>
+Hardware Type:<br>
+<input type="checkbox" name="checkOptions[]" value="Laptop"/>Laptop<br>
+<input type="checkbox" name="checkOptions[]" value="Computer/Monitor"/>Computer/Monitor<br>
+<input type="checkbox" name="checkOptions[]" value="Monitor"/>Monitor<br>
+<input type="checkbox" name="checkOptions[]" value="Scanner"/>Mouse<br>
+<input type="checkbox" name="checkOptions[]" value="Scanner"/>Keyboard<br>
+<input type="checkbox" name="checkOptions[]" value="iPad"/>iPad<br>
+<input type="checkbox" name="checkOptions[]" value="Network Connectivity"/>Network Connectivity<br>
+<input type="checkbox" name="checkOptions[]" value="Phone Connectivity"/>Phone Connectivity<br>
+<input type="checkbox" name="checkOptions[]" value="Speakers"/>Speakers<br>
+<input type="checkbox" name="checkOptions[]" value="Scanner"/>Scanner<br>
+<br>
+<br>
+Software Type:<br>
+<input type="checkbox" name="checkOptions[]" value="Adobe Standard"/>Adobe Standard<br>
+<input type="checkbox" name="checkOptions[]" value="Adobe Pro"/>Adobe Pro<br>
+<input type="checkbox" name="checkOptions[]" value="Microsoft Office Standard"/>Microsoft Office Standard<br>
+<input type="checkbox" name="checkOptions[]" value="Microsoft Office Pro"/>Microsoft Office Pro (Includes MS Access)<br>
+<input type="checkbox" name="checkOptions[]" value="Microsoft Lync"/>Microsoft Lync<br>
+<input type="checkbox" name="checkOptions[]" value="Microsoft Visio"/>Microsoft Visio<br>
+<input type="checkbox" name="checkOptions[]" value="Microsoft Project"/>Microsoft Project<br>
+
+<!-- Dropdown list will provide purchasing/replacing text areas -->
+<br>
+<div id="chooseReason">
+	<td>Reason For Request:</td>
+	<td>
+	<select id="reasonSelect" name="reasonSelect" onchange="check();">
+		<option value="Blank">Please Select An Option</option>
+		<option value="Purchasing">Purchasing</option>
+		<option value="Replacement">Replacement</option>
+	</select>
+	</td>
+</div>
+<br>
+<div id="purchaseBlock">
+<font color="red"><b>Important</b></font>: 
+Please provide a brief description as to why the equipment needs to be purchased (has employee job role changed?):<br><br>
+	<textarea id="purchaseReason" name="purchaseReason" rows="5" cols="50"></textarea>
+</div>
+<div id="replaceBlock">
+<font color="red"><b>Important</b></font>: 
+Please provide a brief description as to why the equipment needs to be replaced (why is current equipment no longer adequate?):<br><br>
+	<textarea id="replaceReason" name="replaceReason" rows="5" cols="50"></textarea>
+</div>
+<br>
+<br />
+<input type="submit" value="Submit">
+</form>
+<p>Problem with the form?  Contact the <a href="mailto:me@organization.org?Subject=PC%20Form%20Issues">HelpDesk</a>.
+</body>
+</html>
